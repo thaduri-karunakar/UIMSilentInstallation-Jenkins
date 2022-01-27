@@ -18,7 +18,7 @@ def windows_ip():
     exit_code = cmd.wait()
     for line in stdout.splitlines():
         if line.strip().startswith('IPv4 Address'):
-            print("The IPV4 Address is : ",line.split(':')[1]).strip()
+            print("The IPV4 Address is : ",line.split(':')[1])
             return (line.split(':')[1]).strip()
 
 def linux_ip():
@@ -27,7 +27,7 @@ def linux_ip():
     exit_code = cmd.wait()
     for line in stdout.splitlines():
         if line.strip().startswith('PING'):
-            print("The IPV4 Address is : ",(line.split(' ')[3])).strip('()')
+            print("The IPV4 Address is : ",(line.split(' ')[3]))
             return ((line.split(' ')[3]).strip('()'))
 
 
