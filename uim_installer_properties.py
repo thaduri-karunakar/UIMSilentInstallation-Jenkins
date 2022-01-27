@@ -50,7 +50,9 @@ def get_installer_properties():
 
     elif uim_installation_type == 'fresh':
         for variable in fresh_common_variables:
-            user_input = os.getenv("{}".format(variable)).strip()
+            user_input = os.getenv("{}".format(variable))
+            if len(user_input) !=0:
+                user_input = os.getenv("{}".format(variable)).strip()
             print(user_input)
             # writing variables into installer_properties dictionary for fresh scenario
             installer_properties[variable] = user_input
