@@ -49,7 +49,7 @@ def take_vm_snapshot():
         }
     headers = {"X-Auth-Token": "38377c9bc6612337cc48d55928548488", 'Accept': '*/*', 'Content-Type': 'text/plain',
                'Content-Type': 'application/json'}
-    host = (input("enter host name to take snapshot : ")).strip()
+    host = os.getenv("host_name").strip()
     vm_id = host_ids[host]
     print("Snapshot vm id is : ", vm_id, "for host : ", host)
 
@@ -71,7 +71,7 @@ def revert_vm_snapshot():
         }
     headers = {"X-Auth-Token": "38377c9bc6612337cc48d55928548488", 'Accept': '*/*', 'Content-Type': 'text/plain',
                'Content-Type': 'application/json'}
-    host = (input("enter host name to revert snapshot : ")).strip()
+    host = os.getenv("host_name").strip()
     print(host)
     vm_id = host_ids[host]
     print("Snapshot vm id is : ", vm_id, "for host : ", host)
@@ -86,7 +86,7 @@ def revert_vm_snapshot():
 
 
 test_get_vms()
-user_input = input("provide valid user_input [take_vm_snapshot / revert_vm_snapshot] : ")
+user_input = os.getenv("method_to_call").strip()
 if user_input == "take_vm_snapshot":
     take_vm_snapshot()
 elif user_input == "revert_vm_snapshot":
