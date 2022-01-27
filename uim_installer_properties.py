@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 import os
+import subprocess
+
 import get_hostName_ip
 import time
 uim_installation_type = os.getenv("uim_installation_type").strip().lower()
@@ -81,6 +83,17 @@ def get_installer_properties():
             pfile.write('{}={}\n'.format(key, value))
     pfile.close()  # closing the file
     time.sleep(5)
+    install_uim_server()
+
+def install_uim_server():
+    cmd = subprocess.Popen(["..\..\sw\UIM\setupCAUIMServer.exe -i silent"], stderr=subprocess.PIPE, universal_newlines=True, stdout=subprocess.PIPE)
+    stdout, stderr = cmd.communicate()
+    exit_code = cmd.wait()
+    if exit_code == 0:
+        print("UIM Installation went Successfully")
+    else:
+        print("UIM Installation failed", exit_code)
+
 
 
 get_installer_properties()
