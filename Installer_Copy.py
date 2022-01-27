@@ -35,7 +35,7 @@ def archive_pkg_copying():
             if exit_code == 0:
                 print('UIM installer copy command executed successfully...\n', stdout)
                 print('UIM installer copy has taken', (time.time() - start) / 60, 'Minutes..')
-                time.sleep(1)
+                time.sleep(5)
             else:
                 print('Failed to execute UIM installer copy command  :  {}\n{} '.format(stderr, archive_pkg_copy_cmd))
                 print("Exit from the program with above issue...")
