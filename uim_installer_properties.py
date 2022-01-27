@@ -28,10 +28,10 @@ def get_installer_properties():
     # Checking UIM installation type (fresh/upgrade)
     if uim_installation_type == 'upgrade':
         print(' Selected uim_installation_type is : ', uim_installation_type)
-        secure_bus_enable_input = str(input("Do you want to enable secure bus (true|false) :  ").strip().lower())
+        secure_bus_enable_input = str(input("Do you want to enable secure bus (true|false) :  ").strip())
         ''' Writing installer_properties variables for upgrade installation'''
         for upgrade_variable in upgrade_common_variables:
-            user_input = input("Provide {} value :  ".format(upgrade_variable)).strip().lower()
+            user_input = input("Provide {} value :  ".format(upgrade_variable)).strip()
             print(user_input)
             # writing variables into installer_properties dictionary for upgrade scenario
             installer_properties[upgrade_variable] = user_input
@@ -40,7 +40,7 @@ def get_installer_properties():
         if secure_bus_enable_input == 'true':
             installer_properties['ENABLE_SECURE_BUS'] = 'true'
             for secure_bus_variable in secure_bus_enabled_variables:
-                secure_bus_input = input("Provide {} value :  ".format(secure_bus_variable)).strip().lower()
+                secure_bus_input = input("Provide {} value :  ".format(secure_bus_variable)).strip()
                 print(secure_bus_input)
                 installer_properties[secure_bus_variable] = secure_bus_input
             print(installer_properties)
@@ -50,7 +50,7 @@ def get_installer_properties():
 
     elif uim_installation_type == 'fresh':
         for variable in fresh_common_variables:
-            user_input = os.getenv("{}".format(variable)).strip().lower()
+            user_input = os.getenv("{}".format(variable)).strip()
             print(user_input)
             # writing variables into installer_properties dictionary for fresh scenario
             installer_properties[variable] = user_input
@@ -60,13 +60,13 @@ def get_installer_properties():
         if installer_properties['DB_NORMALIZED_PROVIDER_NAME'] == 'sqlserver':
             print(installer_properties['DB_NORMALIZED_PROVIDER_NAME'])
             for sql_variable in sqlserver_db_variables:
-                sql_user_input = os.getenv("{}".format(sql_variable)).strip().lower()
+                sql_user_input = os.getenv("{}".format(sql_variable)).strip()
                 print(sql_user_input)
                 installer_properties[sql_variable] = sql_user_input
         elif installer_properties['DB_NORMALIZED_PROVIDER_NAME'] == 'oracle':
             print(installer_properties['DB_NORMALIZED_PROVIDER_NAME'])
             for oracle_variable in oracle_db_variables:
-                oracle_user_input = os.getenv("{}".format(oracle_variable)).strip().lower()
+                oracle_user_input = os.getenv("{}".format(oracle_variable)).strip()
                 print(oracle_user_input)
                 installer_properties[oracle_variable] = oracle_user_input
 
