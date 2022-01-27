@@ -86,14 +86,14 @@ def get_installer_properties():
     install_uim_server()
 
 def install_uim_server():
-    uimCmd = r"..\..\sw\UIM\setupCAUIMServer.exe -i silent"
-    cmd = subprocess.Popen(uimCmd, stderr=subprocess.PIPE, universal_newlines=True, stdout=subprocess.PIPE)
+    uimCmd = r"\sw\UIM\setupCAUIMServer.exe -i silent"
+    cmd = subprocess.Popen(uimCmd, shell=True, stderr=subprocess.PIPE, universal_newlines=True, stdout=subprocess.PIPE)
     stdout, stderr = cmd.communicate()
     exit_code = cmd.wait()
     if exit_code == 0:
-        print("UIM Installation went Successfully")
+        print("UIM Installation went Successfully : \n", stdout)
     else:
-        print("UIM Installation failed", exit_code)
+        print("UIM Installation failed with below error : \n", stderr)
 
 
 
