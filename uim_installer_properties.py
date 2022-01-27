@@ -62,7 +62,9 @@ def get_installer_properties():
         if installer_properties['DB_NORMALIZED_PROVIDER_NAME'] == 'sqlserver':
             print(installer_properties['DB_NORMALIZED_PROVIDER_NAME'])
             for sql_variable in sqlserver_db_variables:
-                sql_user_input = os.getenv("{}".format(sql_variable)).strip()
+                sql_user_input = os.getenv("{}".format(sql_variable))
+                if len(sql_user_input) != 0:
+                    sql_user_input = os.getenv("{}".format(sql_variable)).strip()
                 print(sql_user_input)
                 installer_properties[sql_variable] = sql_user_input
         elif installer_properties['DB_NORMALIZED_PROVIDER_NAME'] == 'oracle':
