@@ -51,8 +51,6 @@ def get_installer_properties():
     elif uim_installation_type == 'fresh':
         for variable in fresh_common_variables:
             user_input = os.getenv("{}".format(variable))
-            if len(user_input) !=0:
-                user_input = os.getenv("{}".format(variable)).strip()
             print(user_input)
             # writing variables into installer_properties dictionary for fresh scenario
             installer_properties[variable] = user_input
@@ -63,8 +61,6 @@ def get_installer_properties():
             print(installer_properties['DB_NORMALIZED_PROVIDER_NAME'])
             for sql_variable in sqlserver_db_variables:
                 sql_user_input = os.getenv("{}".format(sql_variable))
-                if len(sql_user_input) != 0:
-                    sql_user_input = os.getenv("{}".format(sql_variable))
                 print(sql_user_input)
                 installer_properties[sql_variable] = sql_user_input
         elif installer_properties['DB_NORMALIZED_PROVIDER_NAME'] == 'oracle':
