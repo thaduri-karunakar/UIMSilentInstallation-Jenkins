@@ -60,9 +60,15 @@ def get_installer_properties():
         if installer_properties['DB_NORMALIZED_PROVIDER_NAME'] == 'sqlserver':
             print(installer_properties['DB_NORMALIZED_PROVIDER_NAME'])
             for sql_variable in sqlserver_db_variables:
-                sql_user_input = os.getenv("{}".format(sql_variable))
-                print(sql_user_input)
-                installer_properties[sql_variable] = sql_user_input
+                if sql_variable == "DB_TRUST_STORE_PATH":
+                    if installer_properties["DB_ENABLE_TLS"] == 'yes':
+                        sql_user_input = os.getenv("{}".format(sql_variable))
+                        print(sql_user_input)
+                        installer_properties[sql_variable] = sql_user_input
+                else:
+                    sql_user_input = os.getenv("{}".format(sql_variable))
+                    print(sql_user_input)
+                    installer_properties[sql_variable] = sql_user_input
         elif installer_properties['DB_NORMALIZED_PROVIDER_NAME'] == 'oracle':
             print(installer_properties['DB_NORMALIZED_PROVIDER_NAME'])
             for oracle_variable in oracle_db_variables:
