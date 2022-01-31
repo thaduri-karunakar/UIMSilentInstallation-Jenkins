@@ -67,7 +67,7 @@ def get_installer_properties():
         if installer_properties['DB_NORMALIZED_PROVIDER_NAME'] == 'sqlserver':
             print(installer_properties['DB_NORMALIZED_PROVIDER_NAME'])
             for sql_variable in sqlserver_db_variables:
-                if sql_variable == "DB_TRUST_STORE_PATH":
+                if sql_variable in ["DB_TRUST_STORE_PATH","DB_TRUST_STORE_PASSWD"]:
                     if installer_properties["DB_ENABLE_TLS"] == 'yes':
                         sql_user_input = os.getenv("{}".format(sql_variable))
                         print(sql_user_input)
@@ -99,7 +99,7 @@ def get_installer_properties():
     install_uim_server()
 
 def install_uim_server():
-    uimCmd = r"\sw\UIM\setupCAUIMServer.exe -i silent"
+    uimCmd = r"\sw\UIM\setupCAUIMServer.exe -i silent -f installer.properties"
     cmd = subprocess.Popen(uimCmd, shell=True, stderr=subprocess.PIPE, universal_newlines=True, stdout=subprocess.PIPE)
     stdout, stderr = cmd.communicate()
     exit_code = cmd.wait()
