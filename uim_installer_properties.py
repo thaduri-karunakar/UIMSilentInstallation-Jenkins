@@ -9,18 +9,25 @@ print(uim_installation_type)
 
 fresh_common_variables = ['USER_INSTALL_DIR', 'DB_NORMALIZED_PROVIDER_NAME', 'DB_CREATE_MODE', 'DB_VERSION',
                           'DB_SERVER', 'DB_PORT', 'DB_NAME', 'DB_ADMIN_USERNAME', 'DB_ADMIN_PASSWD', 'NM_ADMIN_PASSWD',
-                          'NMS_FIRST_PROBE_PORT', 'WASP_PORT_HTTP', 'TELEMETRY_UPLOAD_OPT_IN_FLAG']
+                          'NMS_FIRST_PROBE_PORT', 'WASP_PORT_HTTP', 'TELEMETRY_UPLOAD_OPT_IN_FLAG','DB_AUTH_MODE']
 
 upgrade_common_variables = ['NM_ADMIN_PASSWD', 'WASP_PORT_HTTP', 'TELEMETRY_UPLOAD_OPT_IN_FLAG']
 
-sqlserver_db_variables = ['DB_AUTH_MODE', 'DB_ENABLE_TLS', 'DB_TRUST_STORE_PATH', 'DB_TRUST_STORE_PASSWD']
+sqlserver_db_variables = ['DB_ENABLE_TLS', 'DB_TRUST_STORE_PATH', 'DB_TRUST_STORE_PASSWD']
 
 oracle_db_variables = ['DB_SERVICENAME', 'DB_TABLESPACENAME', 'DB_SYS_PASSWD', 'DB_ORACLE_INSTANTCLIENT_DIR',
                        'DB_WALLET_TYPE', 'DB_WALLET_STORE_PATH', 'DB_WALLET_STORE_PASSWD', 'DB_CLIENT_AUTH_NEEDED']
 
 secure_bus_enabled_variables = ['TUNNEL_PORT', 'CA_CERT_PASSWD', 'CLIENT_CERT_PASSWD']
 
-installer_properties = {'NMS_PRIMARY_ROBOT_NAME' : get_hostName_ip.get_hostname(), 'NMS_PRIMARY_HUB_NAME' : '{}_hub'.format(get_hostName_ip.get_hostname()), 'NMS_PRIMARY_HUB_IP': get_hostName_ip.get_ip(), 'NMS_DOMAIN' : '{}_domain'.format(get_hostName_ip.get_hostname()), 'ENABLE_SECURE_BUS': 'false'}
+installer_properties = {"DB_CREATE_MODE":"", "NMS_DOMAIN":"", "DB_VERSION":"", "DB_PORT": "",
+                        "DB_TRUST_STORE_PASSWD":"", "DB_NAME":"",  "DB_AUTH_MODE":"", "DB_SYS_PASSWD":"",
+                        "DB_TABLESPACENAME":"", "NMS_PRIMARY_HUB_IP":get_hostName_ip.get_ip(),
+                        "NMS_FIRST_PROBE_PORT":"", "ENABLE_SECURE_BUS":"false", "DB_TRUST_STORE_PATH":"",
+                        "DB_ADMIN_PASSWD":"", "NMS_PRIMARY_HUB_NAME":"{}_hub".format(get_hostName_ip.get_hostname()), "SUPPORT_PASSWD":"mogg10", "TELEMETRY_UPLOAD_OPT_IN_FLAG":"false", "WASP_PORT_HTTP":"80",
+                        "DB_NORMALIZED_PROVIDER_NAME":"sqlserver", "DB_ADMIN_USERNAME":"sa", "NM_ADMIN_PASSWD":"interOP@123", "SUPPORT_UNAME":"then@nimsoft.no", "DB_ENABLE_TLS":"no", "DB_SERVICENAME":"", "CLIENT_CERT_PASSWD":"",
+                        "USER_INSTALL_DIR":"", "NMS_PRIMARY_ROBOT_NAME":get_hostName_ip.get_hostname(), "DB_SERVER":"", "CA_CERT_PASSWD":"", "TUNNEL_PORT":"48003", "DB_ORACLE_INSTANTCLIENT_DIR":"", "DB_WALLET_TYPE":"", "DB_WALLET_STORE_PATH":"",
+                        "DB_WALLET_STORE_PASSWD":"", "DB_CLIENT_AUTH_NEEDED":""}
 
 
 def get_installer_properties():
@@ -89,7 +96,7 @@ def get_installer_properties():
             pfile.write('{}={}\n'.format(key, value))
     pfile.close()  # closing the file
     time.sleep(5)
-    install_uim_server()
+    # install_uim_server()
 
 def install_uim_server():
     uimCmd = r"\sw\UIM\setupCAUIMServer.exe -i silent"
