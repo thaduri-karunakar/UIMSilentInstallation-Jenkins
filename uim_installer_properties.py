@@ -21,11 +21,11 @@ oracle_db_variables = ['DB_SERVICENAME', 'DB_TABLESPACENAME', 'DB_SYS_PASSWD', '
 secure_bus_enabled_variables = ['TUNNEL_PORT', 'CA_CERT_PASSWD', 'CLIENT_CERT_PASSWD']
 
 installer_properties = {"DB_CREATE_MODE": "", "NMS_DOMAIN": "{}_domain".format(get_hostName_ip.get_hostname()), "DB_VERSION": "", "DB_PORT": "",
-                        "DB_TRUST_STORE_PASSWD": "", "DB_NAME":"",  "DB_AUTH_MODE":"", "DB_SYS_PASSWD":"",
+                        "DB_TRUST_STORE_PASSWD": "", "DB_NAME":"",  "DB_AUTH_MODE":"", "DB_SYS_PASSWD": "interOP@123",
                         "DB_TABLESPACENAME":"", "NMS_PRIMARY_HUB_IP":get_hostName_ip.get_ip(),
                         "NMS_FIRST_PROBE_PORT":"", "ENABLE_SECURE_BUS":"false", "DB_TRUST_STORE_PATH":"",
                         "DB_ADMIN_PASSWD":"", "NMS_PRIMARY_HUB_NAME":"{}_hub".format(get_hostName_ip.get_hostname()), "SUPPORT_PASSWD":"mogg10", "TELEMETRY_UPLOAD_OPT_IN_FLAG":"false", "WASP_PORT_HTTP":"80",
-                        "DB_NORMALIZED_PROVIDER_NAME":"sqlserver", "DB_ADMIN_USERNAME":"sa", "NM_ADMIN_PASSWD":"interOP@123", "SUPPORT_UNAME":"then@nimsoft.no", "DB_ENABLE_TLS":"no", "DB_SERVICENAME":"", "CLIENT_CERT_PASSWD":"",
+                        "DB_NORMALIZED_PROVIDER_NAME":"sqlserver", "DB_ADMIN_USERNAME":"sa", "NM_ADMIN_PASSWD":"interOP@123", "SUPPORT_UNAME":"then@nimsoft.no", "DB_ENABLE_TLS":"no", "DB_SERVICENAME":"Default", "CLIENT_CERT_PASSWD":"",
                         "USER_INSTALL_DIR":"", "NMS_PRIMARY_ROBOT_NAME":get_hostName_ip.get_hostname(), "DB_SERVER":"", "CA_CERT_PASSWD":"", "TUNNEL_PORT":"48003", "DB_ORACLE_INSTANTCLIENT_DIR":"", "DB_WALLET_TYPE":"", "DB_WALLET_STORE_PATH":"",
                         "DB_WALLET_STORE_PASSWD":"", "DB_CLIENT_AUTH_NEEDED":""}
 
@@ -89,7 +89,7 @@ def get_installer_properties():
     print(installer_properties)
     # print(installer_properties['USER_INSTALL_DIR'])
     # creating installer.properties file and writing the variables
-    with open(r"C:\sw\UIM\installer.properties", "a+") as pfile:
+    with open(r"C:\sw\UIM\installer.properties", "a") as pfile:
         for key, value in installer_properties.items():
             # print(key, value)
             # writing all variables into installer.properties file
