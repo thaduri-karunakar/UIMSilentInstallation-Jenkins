@@ -20,8 +20,8 @@ oracle_db_variables = ['DB_SERVICENAME', 'DB_TABLESPACENAME', 'DB_SYS_PASSWD', '
 
 secure_bus_enabled_variables = ['TUNNEL_PORT', 'CA_CERT_PASSWD', 'CLIENT_CERT_PASSWD']
 
-installer_properties = {"DB_CREATE_MODE":"", "NMS_DOMAIN":"", "DB_VERSION":"", "DB_PORT": "",
-                        "DB_TRUST_STORE_PASSWD":"", "DB_NAME":"",  "DB_AUTH_MODE":"", "DB_SYS_PASSWD":"",
+installer_properties = {"DB_CREATE_MODE": "", "NMS_DOMAIN": "{}_domain".format(get_hostName_ip.get_hostname()), "DB_VERSION": "", "DB_PORT": "",
+                        "DB_TRUST_STORE_PASSWD": "", "DB_NAME":"",  "DB_AUTH_MODE":"", "DB_SYS_PASSWD":"",
                         "DB_TABLESPACENAME":"", "NMS_PRIMARY_HUB_IP":get_hostName_ip.get_ip(),
                         "NMS_FIRST_PROBE_PORT":"", "ENABLE_SECURE_BUS":"false", "DB_TRUST_STORE_PATH":"",
                         "DB_ADMIN_PASSWD":"", "NMS_PRIMARY_HUB_NAME":"{}_hub".format(get_hostName_ip.get_hostname()), "SUPPORT_PASSWD":"mogg10", "TELEMETRY_UPLOAD_OPT_IN_FLAG":"false", "WASP_PORT_HTTP":"80",
