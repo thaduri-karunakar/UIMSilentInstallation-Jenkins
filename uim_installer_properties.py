@@ -96,7 +96,7 @@ def get_installer_properties():
             pfile.write('{}={}\n'.format(key, value))
     pfile.close()  # closing the file
     time.sleep(5)
-    # install_uim_server()
+    install_uim_server()
 
 def install_uim_server():
     uimCmd = r"\sw\UIM\setupCAUIMServer.exe -i silent"
