@@ -99,6 +99,7 @@ def get_installer_properties():
     pfile.close()  # closing the file
     time.sleep(5)
     install_uim_server()
+    print('UIM installer has taken', (time.time() - start) / 60, 'Minutes..')
 
 def install_uim_server():
     uimCmd = r"\sw\UIM\setupCAUIMServer.exe -i silent -f installer.properties"
@@ -109,8 +110,6 @@ def install_uim_server():
         print("UIM Installation went Successfully : \n", stdout)
     else:
         print("UIM Installation failed with below error : \n", stderr)
-
-print('UIM installer has taken', (time.time() - start) / 60, 'Minutes..')
 
 
 get_installer_properties()

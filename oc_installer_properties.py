@@ -41,7 +41,7 @@ def get_oc_installer_properties():
     pfile.close()  # closing the file
     time.sleep(5)
     install_operator_console()
-
+    print('Operator Console Installation has taken', (time.time() - start) / 60, 'Minutes..')
 
 def install_operator_console():
 
@@ -54,7 +54,5 @@ def install_operator_console():
     else:
         print("operator console failed with below error : \n", stderr)
 
-
-print('Operator Console Installation has taken', (time.time() - start) / 60, 'Minutes..')
 
 get_oc_installer_properties()
