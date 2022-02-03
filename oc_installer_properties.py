@@ -24,7 +24,7 @@ installer_properties = {"MODE": os.getenv("MODE"), "NIMBUS_USERNAME": os.getenv(
                          "{}_domain/{}_hub/{}".format(uim_hostname, uim_hostname, os.getenv("OC_ROBOT")),
                         "UMP_ROBOT_IP": os.getenv("OC_ROBOT_IP"), "OC_ROBOT_IP": os.getenv("OC_ROBOT_IP"),
                         "USER_INSTALL_DIR": os.getenv("USER_INSTALL_DIR"), "OC_HTTP_PORT": os.getenv("OC_HTTP_PORT"),
-                        "UMP_HTTP_PORT": os.getenv("OC_HTTP_PORT"), "UMP_AJP_PORT": os.getenv("UMP_AJP_PORT"),
+                        "UMP_HTTP_PORT": os.getenv("OC_HTTP_PORT"), "OC_AJP_PORT": os.getenv("OC_AJP_PORT"), "UMP_AJP_PORT": os.getenv("OC_AJP_PORT"),
                         "SHORTCUT_STARTMENU": "true", "OVERWRITE_DYNAMIC_VIEWS": "true", "WEBSERVICE_DASHBOARD_API":
                         "true", "SHORTCUT_DESKTOP": "true", "WEBSERVICE_MOBILE": "true", "NAS_PROBE": "{}/nas".format(uim_path),
                         "MAINTENANCE_MODE_PROBE": "{}/maintenance_mode".format(uim_path), "SLA_ENGINE_PROBE": "{}/sla_engine".format(uim_path), "DATA_ENGINE_PROBE": "{}/data_engine".format(uim_path), "DISCOVERY_SERVER_PROBE": "{}/discovery_server".format(uim_path),
