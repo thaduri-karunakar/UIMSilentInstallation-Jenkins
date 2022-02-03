@@ -40,7 +40,7 @@ def get_oc_installer_properties():
             pfile.write('{}={}\n'.format(key, value))
     pfile.close()  # closing the file
     time.sleep(5)
-    # install_operator_console()
+    install_operator_console()
 
 
 def install_operator_console():
@@ -55,6 +55,6 @@ def install_operator_console():
         print("operator console failed with below error : \n", stderr)
 
 
-print('UIM installer copy has taken', (time.time() - start) / 60, 'Minutes..')
+print('Operator Console Installation has taken', (time.time() - start) / 60, 'Minutes..')
 
 get_oc_installer_properties()
