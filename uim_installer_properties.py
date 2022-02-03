@@ -4,9 +4,11 @@ import subprocess
 
 import get_hostName_ip
 import time
+start = time.time()
 uim_installation_type = os.getenv("uim_installation_type").strip().lower()
 print(uim_installation_type)
 
+uim_hostname = get_hostName_ip.get_hostname()
 fresh_common_variables = ['USER_INSTALL_DIR', 'DB_NORMALIZED_PROVIDER_NAME', 'DB_CREATE_MODE', 'DB_VERSION',
                           'DB_SERVER', 'DB_PORT', 'DB_NAME', 'DB_ADMIN_USERNAME', 'DB_ADMIN_PASSWD', 'NM_ADMIN_PASSWD',
                           'NMS_FIRST_PROBE_PORT', 'WASP_PORT_HTTP', 'TELEMETRY_UPLOAD_OPT_IN_FLAG','DB_AUTH_MODE']
@@ -108,6 +110,7 @@ def install_uim_server():
     else:
         print("UIM Installation failed with below error : \n", stderr)
 
+print('UIM installer has taken', (time.time() - start) / 60, 'Minutes..')
 
 
 get_installer_properties()
