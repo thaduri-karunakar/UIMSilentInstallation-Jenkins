@@ -35,21 +35,21 @@ def archive_pkg_copying():
             if exit_code == 0:
                 print('UIM installer copy command executed successfully...\n', stdout)
                 time.sleep(5)
-                print('UIM installer copy has taken', (time.time() - start) / 60, 'Minutes..')
+                print('UIM installer copy has took', (time.time() - start) / 60, 'Minutes..')
             else:
                 print('Failed to execute UIM installer copy command  :  {}\n{} '.format(stderr, archive_pkg_copy_cmd))
                 print("Exit from the program with above issue...")
-                print('UIM installer copy has taken', (time.time() - start) / 60, 'Minutes..')
+                print('UIM installer copy has took', (time.time() - start) / 60, 'Minutes..')
                 sys.exit(1)
 
         else:
             print('Failed to execute net use command :  {}.......\n {} '.format(stderr, stdout))
             print("Exit from the program with above issue...")
-            print('UIM installer copy has taken', (time.time() - start) / 60, 'Minutes..')
+            print('UIM installer copy has took', (time.time() - start) / 60, 'Minutes..')
             sys.exit(1)
 
     except Exception as e:
-        print('Below exception occured')
+        print('Below exception occurred')
         traceback.print_exc()
 
 
