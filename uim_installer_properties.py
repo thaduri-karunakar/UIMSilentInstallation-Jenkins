@@ -7,7 +7,7 @@ import time
 
 start = time.time()
 uim_installation_type = os.getenv("uim_installation_type").strip().lower()
-print("uim_installation_type is : ", uim_installation_type)
+# print("uim_installation_type is : ", uim_installation_type)
 
 uim_host_ip = get_hostName_ip.get_ip()
 uim_hostname = get_hostName_ip.get_hostname()
@@ -50,7 +50,7 @@ uim_upgrade_installer_properties = {"NM_ADMIN_PASSWD": "", "WASP_PORT_HTTP": "",
 def get_uim_installation_type():
     """Checking UIM installation type (fresh/upgrade)"""
     if uim_installation_type == 'upgrade':
-        print(' Selected uim_installation_type is : ', uim_installation_type)
+        print('Selected uim_installation_type is : ', uim_installation_type)
         get_uim_upgrade_installer_properties()
     elif uim_installation_type == 'fresh':
         print(' Selected uim_installation_type is : ', uim_installation_type)
@@ -117,11 +117,11 @@ def get_uim_upgrade_installer_properties():
             user_input = os.getenv(upgrade_variable)
             print(user_input)
             uim_upgrade_installer_properties[upgrade_variable] = user_input
-        print("Below are the uim_upgrade_installer_properties variables")
-        print(uim_upgrade_installer_properties)
-        time.sleep(2)
-        print("Calling write_installer_properties_file function to create properties file ...")
-        write_installer_properties_file()
+    print("Below are the uim_upgrade_installer_properties variables")
+    print(uim_upgrade_installer_properties)
+    time.sleep(2)
+    print("Calling write_installer_properties_file function to create properties file ...")
+    write_installer_properties_file()
 
 
 def write_installer_properties_file():
@@ -129,7 +129,8 @@ def write_installer_properties_file():
     with open(r"C:\sw\UIM\installer.properties", "a") as pfile:
         print("Writing installer.properties file from uim_{}_installer_properties.items()".
               format(uim_installation_type))
-        for key, value in "uim_{}_installer_properties.items()".format(uim_installation_type):
+        write_function = "uim_{}_installer_properties.items()".format(uim_installation_type)
+        for key, value in write_function():
             # print(key, value)
             # writing all variables into installer.properties file
             pfile.write('{}={}\n'.format(key, value))
