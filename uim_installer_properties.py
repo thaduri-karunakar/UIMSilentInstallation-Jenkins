@@ -130,7 +130,13 @@ def write_installer_properties_file():
         print("Writing installer.properties file from uim_{}_installer_properties.items()".
               format(uim_installation_type))
         write_function = "uim_{}_installer_properties.items()".format(uim_installation_type)
-        for key, value in write_function():
+        if uim_installation_type == 'fresh':
+            for key, value in uim_fresh_installer_properties.items():
+            # print(key, value)
+            # writing all variables into installer.properties file
+            pfile.write('{}={}\n'.format(key, value))
+        elif uim_installation_type == 'upgrade':
+            for key, value in uim_upgrade_installer_properties.items():
             # print(key, value)
             # writing all variables into installer.properties file
             pfile.write('{}={}\n'.format(key, value))
