@@ -132,14 +132,10 @@ def write_installer_properties_file():
         write_function = "uim_{}_installer_properties.items()".format(uim_installation_type)
         if uim_installation_type == 'fresh':
             for key, value in uim_fresh_installer_properties.items():
-            # print(key, value)
-            # writing all variables into installer.properties file
-            pfile.write('{}={}\n'.format(key, value))
+                pfile.write('{}={}\n'.format(key, value))  # writing all variables into installer.properties file
         elif uim_installation_type == 'upgrade':
             for key, value in uim_upgrade_installer_properties.items():
-            # print(key, value)
-            # writing all variables into installer.properties file
-            pfile.write('{}={}\n'.format(key, value))
+                pfile.write('{}={}\n'.format(key, value))  # writing all variables into installer.properties file
     pfile.close()  # closing the file
     time.sleep(5)
     print("Calling install_uim_server function to start silent installation of UIM ...")
