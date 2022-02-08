@@ -7,7 +7,7 @@ import time
 
 start = time.time()
 uim_installation_type = os.getenv("uim_installation_type").strip().lower()
-print(uim_installation_type)
+print("uim_installation_type is : ", uim_installation_type)
 
 uim_host_ip = get_hostName_ip.get_ip()
 uim_hostname = get_hostName_ip.get_hostname()
@@ -53,6 +53,7 @@ def get_uim_installation_type():
         print(' Selected uim_installation_type is : ', uim_installation_type)
         get_uim_upgrade_installer_properties()
     elif uim_installation_type == 'fresh':
+        print(' Selected uim_installation_type is : ', uim_installation_type)
         get_uim_fresh_installer_properties()
     elif uim_installation_type not in ['fresh', 'upgrade']:
         print('Provided ENABLE_SECURE_BUS (fresh/upgrade) is not correct, Given input is :', uim_installation_type)
@@ -148,3 +149,6 @@ def install_uim_server():
         print("UIM Installation went Successfully : \n", stdout)
     else:
         print("UIM Installation failed with below error : \n", stderr)
+
+
+get_uim_installation_type()
