@@ -139,7 +139,7 @@ def write_installer_properties_file():
     pfile.close()  # closing the file
     time.sleep(5)
     print("Calling install_uim_server function to start silent installation of UIM ...")
-    # install_uim_server()
+    install_uim_server()
     print('UIM installer has took', (time.time() - start) / 60, 'Minutes..')
 
 
