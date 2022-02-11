@@ -9,6 +9,7 @@ start = time.time()
 url_to_download = [os.getenv("uim_url"), os.getenv("oc_url")]
 installer_filename = []
 installer_path = r"C:\sw\workspace\\"
+deletedir = []
 headers = {"X-JFrog-Art-Api": "AKCp8kqgRFpR8hYKGXWiRPW7m2dDrCbsLrWzgeRfUzqiwHEWF55qKFLv2RHvtZWL67dMX8Ad5"}
 
 
@@ -42,6 +43,7 @@ def unzip_installer(uim_file):
         with zipfile.ZipFile(uim_file, "r") as zip_ref:
             global extarct_uim_file
             extarct_uim_file=uim_file.rstrip(".zip")
+            deletedir.extend([extarct_uim_file, extarct_uim_file+".zip"])  #deletedir will use while deleting installer directories
             zip_ref.extractall(extarct_uim_file)
             print("{} unzip is done ..".format(extarct_uim_file))
 
@@ -69,8 +71,8 @@ def move_installers():
             pass
             print("UIM Installers moved successfully to : {}".format(installer_path))
             ''' deleting directory '''
-            for deletedir in [extarct_uim_file, filename]:
-                delete_dir = "echo y | rmdir /s {}".format(deletedir)
+            for deletedirfile in deletedir:
+                delete_dir = "echo y | rmdir /s {}".format(deletedirfile)
                 print("Deleting directory : {}".format(delete_dir))
                 cmd = subprocess.Popen(delete_dir, shell=True, stderr=subprocess.PIPE, universal_newlines=True,
                                     stdout=subprocess.PIPE)
@@ -79,7 +81,7 @@ def move_installers():
                 if exit_code == 0:
                     print("{} deleted successfully : ".format(delete_dir))
                 else:
-                    print("{} failed to delete with error : {}  : ", delete_dir, stderr)
+                    print("failed to delete with error : {}  : ", delete_dir, stderr)
 
         else:
             print("UIM Installers move failed with below error : \n", stderr)
