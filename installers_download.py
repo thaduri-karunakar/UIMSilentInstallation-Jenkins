@@ -1,6 +1,5 @@
 import subprocess
 import os
-
 import requests
 import time
 import zipfile
@@ -10,11 +9,11 @@ start = time.time()
 url_to_download = [os.getenv("uim_url"), os.getenv("oc_url")]
 installer_filename = []
 installer_path = r"C:\sw\workspace\\"
-auth = ("tk029975", "9347845356aA******")
+headers = {"X-JFrog-Art-Api": "AKCp8kqgRFpR8hYKGXWiRPW7m2dDrCbsLrWzgeRfUzqiwHEWF55qKFLv2RHvtZWL67dMX8Ad5"}
 
 
 def download_installers(app_url):
-    download = requests.get(app_url, auth=auth, allow_redirects=True, stream=True)
+    download = requests.get(app_url, headers=headers, allow_redirects=True, stream=True)
     global  filename
     filename = app_url[app_url.rfind('/')+1:]
     ''' giving exact path to download filename i.e; C:\sw\workspace\niminstall_uimserver_*.zip '''
