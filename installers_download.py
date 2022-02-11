@@ -72,7 +72,9 @@ def move_installers():
             print("UIM Installers moved successfully to : {}".format(installer_path))
             ''' deleting directory '''
             for deletedirfile in deletedir:
-                delete_dir = "echo y | del  {}".format(deletedirfile)
+                delete_dir = "echo y | del /s  {}".format(deletedirfile) if deletedirfile.contains(".zip") else delete_dir = "echo y | rmdir /s  {}".format(deletedirfile)
+
+                # delete_dir = "echo y | rmdir /s  {}".format(deletedirfile)
                 print("Deleting directory : {}".format(delete_dir))
                 cmd = subprocess.Popen(delete_dir, shell=True, stderr=subprocess.PIPE, universal_newlines=True,
                                     stdout=subprocess.PIPE)
