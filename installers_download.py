@@ -69,16 +69,17 @@ def move_installers():
             pass
             print("UIM Installers moved successfully to : {}".format(installer_path))
             ''' deleting directory '''
-            delete_dir = "echo y | rmdir /s {}".format(extarct_uim_file)
-            print("Deleting directory : {}".format(delete_dir))
-            cmd = subprocess.Popen(delete_dir, shell=True, stderr=subprocess.PIPE, universal_newlines=True,
-                                   stdout=subprocess.PIPE)
-            stdout, stderr = cmd.communicate()
-            exit_code = cmd.wait()
-            if exit_code == 0:
-                print("{} deleted successfully : ".format(delete_dir))
-            else:
-                print("{} failed to delete with error : {}  : ", delete_dir, stderr)
+            for deletedir in [extarct_uim_file, filename]:
+                delete_dir = "echo y | rmdir /s {}".format(deletedir)
+                print("Deleting directory : {}".format(delete_dir))
+                cmd = subprocess.Popen(delete_dir, shell=True, stderr=subprocess.PIPE, universal_newlines=True,
+                                    stdout=subprocess.PIPE)
+                stdout, stderr = cmd.communicate()
+                exit_code = cmd.wait()
+                if exit_code == 0:
+                    print("{} deleted successfully : ".format(delete_dir))
+                else:
+                    print("{} failed to delete with error : {}  : ", delete_dir, stderr)
 
         else:
             print("UIM Installers move failed with below error : \n", stderr)
