@@ -72,7 +72,7 @@ def move_installers():
             print("UIM Installers moved successfully to : {}".format(installer_path))
             ''' deleting directory '''
             for deletedirfile in deletedir:
-                delete_dir = "echo y | rmdir /s {}".format(deletedirfile)
+                delete_dir = "echo y | del /s {}".format(deletedirfile)
                 print("Deleting directory : {}".format(delete_dir))
                 cmd = subprocess.Popen(delete_dir, shell=True, stderr=subprocess.PIPE, universal_newlines=True,
                                     stdout=subprocess.PIPE)
@@ -81,7 +81,7 @@ def move_installers():
                 if exit_code == 0:
                     print("{} deleted successfully : ".format(delete_dir))
                 else:
-                    print("failed to delete with error : {}  : ", delete_dir, stderr)
+                    print("failed to delete with fowlloing error :  ", delete_dir, stderr)
 
         else:
             print("UIM Installers move failed with below error : \n", stderr)
