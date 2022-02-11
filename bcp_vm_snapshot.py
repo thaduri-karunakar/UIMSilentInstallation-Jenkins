@@ -4,11 +4,12 @@ import os
 
 
 base_url = r"https://cloudportal.broadcom.net/api/vms"
-header = {"X-Auth-Token": "38377c9bc6612337cc48d55928548488"}
+
 host_ids = {}
 
 
 def test_get_vms():
+    header = {"X-Auth-Token": "b1c974255458934ac4143b3446e6cf95"}
     payload = \
         {
             'expand': 'resources',
