@@ -149,7 +149,7 @@ def install_uim_server():
     stdout, stderr = cmd.communicate()
     exit_code = cmd.wait()
     if exit_code == 0:
-        print("UIM Installation went Successfully : \n", stdout)
+        print("UIM Installation went Successfully ... \n", stdout)
     else:
         print("UIM Installation failed with below error : \n", stderr)
 

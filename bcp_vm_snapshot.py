@@ -84,6 +84,40 @@ def revert_vm_snapshot():
     print(res)
     print("\n{} VM snapshot will be revert  in few minutes and vm will get restarted...".format(host))
 
+def vm_power_state():
+
+    data = \
+        {
+            "action": os.getenv("state")   #state should be start or stop
+        }
+    headers = {"X-Auth-Token": "b1c974255458934ac4143b3446e6cf95", 'Accept': '*/*', 'Content-Type': 'text/plain',
+               'Content-Type': 'application/json'}
+    host = os.getenv("host_name").strip().lower()
+    print(host)
+    if host == "all_vms":
+        for host in host_ids.keys():
+            vm_id = host_ids[host]
+            print("vm id is : ", vm_id, "for host : ", host, "to power ", os.getenv("state"))
+
+            response = requests.post("{}/{}".format(base_url, vm_id), json=data, headers=headers)
+            print("\nResponse URL is :", response.url)
+            print("\nResponse Code is : ", response.status_code)
+            assert response.status_code == 200
+            res = response.json()
+            print(res)
+            print("\n{} VM will power {} in couple of minutes...".format(host, os.getenv("state")))
+            time.sleep(2)
+    else:
+        vm_id = host_ids[host]
+        print("vm id is : ", vm_id, "for host : ", host, "to power ", os.getenv("state"))
+        response = requests.post("{}/{}".format(base_url, vm_id), json=data, headers=headers)
+        print("\nResponse URL is :", response.url)
+        print("\nResponse Code is : ", response.status_code)
+        assert response.status_code == 200
+        res = response.json()
+        print(res)
+        print("\n{} VM will power {} in couple of minutes...".format(host, os.getenv("state")))
+
 
 test_get_vms()
 user_input = os.getenv("method_to_call").strip()
@@ -91,6 +125,8 @@ if user_input == "take_vm_snapshot":
     take_vm_snapshot()
 elif user_input == "revert_vm_snapshot":
     revert_vm_snapshot()
+elif user_input == "power_state":
+    vm_power_state()
 else:
     print("Please provide valid user_input [take_vm_snapshot / revert_vm_snapshot")
     exit(1)
