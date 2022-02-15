@@ -69,8 +69,8 @@ def get_uim_fresh_installer_properties():
         uim_fresh_installer_properties[variable] = user_input
         '''  adding DB specific variables to uim_fresh_installer_properties dictionary  '''
         if uim_fresh_installer_properties['DB_NORMALIZED_PROVIDER_NAME'] == 'sqlserver':
-            print("selected DB_NORMALIZED_PROVIDER_NAME is : ",
-                  uim_fresh_installer_properties['DB_NORMALIZED_PROVIDER_NAME'])
+            # print("selected DB_NORMALIZED_PROVIDER_NAME is : ",
+            #       uim_fresh_installer_properties['DB_NORMALIZED_PROVIDER_NAME'])
             for sql_variable in sqlserver_db_variables:
                 if sql_variable in ["DB_TRUST_STORE_PATH", "DB_TRUST_STORE_PASSWD"]:
                     if uim_fresh_installer_properties["DB_ENABLE_TLS"] == 'yes':
