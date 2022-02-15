@@ -126,7 +126,7 @@ def get_uim_upgrade_installer_properties():
 
 def write_installer_properties_file():
     """ creating installer.properties file and writing the variables """
-    with open(r"C:\sw\UIM\installer.properties", "a") as pfile:
+    with open(r"C:\sw\Jenkins-slave\workspace\installer.properties", "a") as pfile:
         print("Writing installer.properties file from uim_{}_installer_properties.items()".
               format(uim_installation_type))
         write_function = "uim_{}_installer_properties.items()".format(uim_installation_type)
@@ -144,7 +144,7 @@ def write_installer_properties_file():
 
 
 def install_uim_server():
-    uimcmd = r"\sw\UIM\setupCAUIMServer.exe -i silent -f installer.properties"
+    uimcmd = r"\sw\Jenkins-slave\workspace\setupCAUIMServer.exe -i silent -f installer.properties"
     cmd = subprocess.Popen(uimcmd, shell=True, stderr=subprocess.PIPE, universal_newlines=True, stdout=subprocess.PIPE)
     stdout, stderr = cmd.communicate()
     exit_code = cmd.wait()
