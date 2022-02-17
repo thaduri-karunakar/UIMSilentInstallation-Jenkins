@@ -1,13 +1,12 @@
 import os
 import requests
-import robot_install
-import oc_installer_properties
 
 
 def get_uim_domain_details():
     """ Start of UIM domain details api request """
     uim_domain_details = {}
     uim_home = "http://{}/uimapi/robots/v1".format(os.getenv("uim_ip"))     #http://10.173.32.160/uimapi/robots/v1
+    print("The UI home url is : ", uim_home)
     # uim_home = "http://10.173.32.160/uimapi/robots/v1"
     # auth = ("administrator", "interOP@123")
     auth = (os.getenv("NIMBUS_USERNAME"), os.getenv("NIMBUS_PASSWORD"))
