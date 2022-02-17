@@ -3,25 +3,29 @@ import os
 import subprocess
 import get_hostName_ip
 import time
+import uim_domain_details
 
 start = time.time()
+oc_robot_ip = get_hostName_ip.get_ip()
+oc_robot_hostname = get_hostName_ip.get_hostname()
 
-uim_host_ip = get_hostName_ip.get_ip()
-uim_hostname = get_hostName_ip.get_hostname()
-uim_path = r"/{}_domain/{}_hub/{}".format(uim_hostname, uim_hostname, uim_hostname)
-fresh_common_variables = ['MODE', 'HUB_ROBOT', 'NAS_PROBE', 'NIMBUS_USERNAME',
+uim_domain_details = uim_domain_details.get_uim_domain_details() #reading uim domain deatils  from uim_domain_details.py --> get_uim_domain_details
+# print(uim_domain_details)
+uim_path = uim_domain_details["address"]
+print(uim_path)
+"""fresh_common_variables = ['MODE', 'HUB_ROBOT', 'NAS_PROBE', 'NIMBUS_USERNAME',
                           'SHORTCUT_STARTMENU', 'UMP_ROBOT_IP', 'MAINTENANCE_MODE_PROBE', 'SLA_ENGINE_PROBE',
                           'OC_AJP_PORT', 'OVERWRITE_DYNAMIC_VIEWS', 'WEBSERVICE_DASHBOARD_API', 'OC_HTTP_PORT',
                           'SHORTCUT_DESKTOP', 'DATA_ENGINE_PROBE', 'DISCOVERY_SERVER_PROBE', 'UMP_AJP_PORT',
                           'OC_ROBOT', 'USER_INSTALL_DIR', 'NIS_SERVER_PROBE', 'HUB_ROBOT_IP', 'UMP_ROBOT',
                           'WEBSERVICE_MOBILE', 'SERVICE_HOST_PROBE', 'UGS_PROBE', 'UMP_HTTP_PORT', 'NIMBUS_PASSWORD',
-                          'RELATIONSHIP_SERVICES_PROBE', 'ACE_PROBE', 'MPSE_PROBE', 'OC_ROBOT_IP', 'ADE_PROBE']
+                          'RELATIONSHIP_SERVICES_PROBE', 'ACE_PROBE', 'MPSE_PROBE', 'OC_ROBOT_IP', 'ADE_PROBE']"""
 
 installer_properties = {"MODE": os.getenv("MODE"), "NIMBUS_USERNAME": os.getenv("NIMBUS_USERNAME"), "NIMBUS_PASSWORD":
-    os.getenv("NIMBUS_PASSWORD"), "HUB_ROBOT": uim_path, "HUB_ROBOT_IP": uim_host_ip, "OC_ROBOT":
-                        "{}_domain/{}_hub/{}".format(uim_hostname, uim_hostname, os.getenv("OC_ROBOT")),
-                        "UMP_ROBOT": "{}_domain/{}_hub/{}".format(uim_hostname, uim_hostname, os.getenv("OC_ROBOT")),
-                        "UMP_ROBOT_IP": os.getenv("OC_ROBOT_IP"), "OC_ROBOT_IP": os.getenv("OC_ROBOT_IP"),
+    os.getenv("NIMBUS_PASSWORD"), "HUB_ROBOT": uim_domain_details["address"], "HUB_ROBOT_IP": uim_domain_details["ip"], "OC_ROBOT":
+                        "{}/{}/{}".format(uim_domain_details["domain"], uim_domain_details["hub"], oc_robot_hostname),
+                        "UMP_ROBOT": "{}/{}/{}".format(uim_domain_details["domain"], uim_domain_details["hub"], oc_robot_hostname),
+                        "UMP_ROBOT_IP": oc_robot_ip, "OC_ROBOT_IP": oc_robot_ip,
                         "USER_INSTALL_DIR": os.getenv("USER_INSTALL_DIR"), "OC_HTTP_PORT": os.getenv("OC_HTTP_PORT"),
                         "UMP_HTTP_PORT": os.getenv("OC_HTTP_PORT"), "OC_AJP_PORT": os.getenv("OC_AJP_PORT"),
                         "UMP_AJP_PORT": os.getenv("OC_AJP_PORT"),

@@ -150,6 +150,20 @@ def install_uim_server():
     exit_code = cmd.wait()
     if exit_code == 0:
         print("UIM Installation went Successfully ... \n", stdout)
+
+        ''' Deploying uimapi probe on primary hub '''
+
+        print("Deploying uimapi probe on primary hub ...")
+        probe_deploy = r"C:\Progra~1\Nimsoft\bin\pu -u administrator -p {} /{1}_domain/{1}_hub/{1}/controller inst_request uimapi".format(os.getenv("NM_ADMIN_PASSWD"),uim_hostname )
+        cmd = subprocess.Popen(probe_deploy, shell=True, stderr=subprocess.PIPE, universal_newlines=True,
+                               stdout=subprocess.PIPE)
+        stdout, stderr = cmd.communicate()
+        exit_code = cmd.wait()
+        if exit_code == 0:
+            print("uimapi package deployed successfully on primary hub ... \n", stdout)
+        else:
+            print("Failed to deploy uimapi package ... \n", stdout)
+
     else:
         print("UIM Installation failed with below error : \n", stderr)
 
