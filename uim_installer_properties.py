@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import os
 import subprocess
+import sys
 
 import get_hostName_ip
 import time
@@ -161,11 +162,14 @@ def install_uim_server():
         exit_code = cmd.wait()
         if exit_code == 0:
             print("uimapi package deployed successfully on primary hub ... \n", stdout)
+            print("Waiting for 3 minutes for wasp probe to come up ...")
+            time.sleep(180)
         else:
-            print("Failed to deploy uimapi package ... \n", stdout)
+            print("Failed to deploy uimapi package ... \n", stderr)
+            sys.exit(1)
 
     else:
         print("UIM Installation failed with below error : \n", stderr)
-
+        sys.exit(1)
 
 get_uim_installation_type()
