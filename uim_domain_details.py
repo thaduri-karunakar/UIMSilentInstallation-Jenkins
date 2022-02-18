@@ -10,6 +10,7 @@ def get_uim_domain_details():
     # uim_home = "http://10.173.32.160/uimapi/robots/v1"
     # auth = ("administrator", "interOP@123")
     auth = (os.getenv("NIMBUS_USERNAME"), os.getenv("NIMBUS_PASSWORD"))
+    print("NIMBUS_USERNAME : {} , NIMBUS_PASSWORD : {}".format(os.getenv("NIMBUS_USERNAME"), os.getenv("NIMBUS_PASSWORD")))
     headers = {"Accept": "application/json", "Content-Type": "application/json;charset=UTF-8"}
     uim_request = requests.get(uim_home, auth=auth, headers=headers)
     res = (uim_request.json())
