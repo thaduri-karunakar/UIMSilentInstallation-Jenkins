@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import platform
 import subprocess
 import  os
@@ -8,7 +9,7 @@ import get_hostName_ip
 import uim_domain_details
 
 start = time.time()
-# uim_ip = "lvntest021804.bpc.broadcom.net"     # UIM Ip will get from jenkins job and will use in uim_domain_details.py
+uim_ip = os.getenv("uim_ip")  #"lvntest021804.bpc.broadcom.net"     # UIM Ip will get from jenkins job and will use in uim_domain_details.py
 uim_vm_username = os.getenv("uim_vm_username")
 uim_vm_password = os.getenv("uim_vm_password")
 # uim_hostname = uim_ip.split(".")[0]
