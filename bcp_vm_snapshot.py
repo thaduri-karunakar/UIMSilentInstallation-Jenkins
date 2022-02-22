@@ -8,9 +8,10 @@ base_url = r"https://cloudportal.broadcom.net/api/vms"
 
 host_ids = {}
 
-
+# X-Auth-Token for uim.st : f179aa26b2d3499b005a31d0565bd0a9 and karunakar token : c61a2d67b5f50e7f412299e0c3172050
+XAuthToken = "f179aa26b2d3499b005a31d0565bd0a9"
 def test_get_vms():
-    header = {"X-Auth-Token": "b1c974255458934ac4143b3446e6cf95"}
+    header = {"X-Auth-Token": XAuthToken}
     payload = \
         {
             'expand': 'resources',
@@ -49,7 +50,7 @@ def take_vm_snapshot():
             "action": "take snapshot",
             "snap_name": "CleanImage"
         }
-    headers = {"X-Auth-Token": "38377c9bc6612337cc48d55928548488", 'Accept': '*/*', 'Content-Type': 'text/plain',
+    headers = {"X-Auth-Token": XAuthToken, 'Accept': '*/*', 'Content-Type': 'text/plain',
                'Content-Type': 'application/json'}
     host = os.getenv("host_name").strip()
     vm_id = host_ids[host]
@@ -71,8 +72,9 @@ def revert_vm_snapshot():
             "action": "revert snapshot",
             "snapshot_uuid": "CleanImage"
         }
-    headers = {"X-Auth-Token": "38377c9bc6612337cc48d55928548488", 'Accept': '*/*', 'Content-Type': 'text/plain',
-               'Content-Type': 'application/json'}
+    # uim.st : f179aa26b2d3499b005a31d0565bd0a9 and karunakar token : c61a2d67b5f50e7f412299e0c3172050
+    headers = {"X-Auth-Token": XAuthToken, 'Accept': '*/*', 'Content-Type': 'text/plain',
+               'Content-Type': 'application/json'}  #X-Auth-Token is based on okta id, get this from postman
     host = os.getenv("host_name").strip()
     print(host)
     vm_id = host_ids[host]
@@ -92,7 +94,7 @@ def vm_power_state():
         {
             "action": os.getenv("state")   #state should be start or stop
         }
-    headers = {"X-Auth-Token": "b1c974255458934ac4143b3446e6cf95", 'Accept': '*/*', 'Content-Type': 'text/plain',
+    headers = {"X-Auth-Token": XAuthToken, 'Accept': '*/*', 'Content-Type': 'text/plain',
                'Content-Type': 'application/json'}
     host = os.getenv("host_name").strip().lower()
     print(host)
