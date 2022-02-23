@@ -44,7 +44,7 @@ installer_properties = {"MODE": os.getenv("MODE"), "NIMBUS_USERNAME": os.getenv(
 
 
 def get_oc_installer_properties():
-    with open(r"C:\sw\UIM\oc_installer.properties", "a") as pfile:
+    with open(r"\sw\Jenkins-slave\workspace\oc_installer.properties", "a") as pfile:
         for key, value in installer_properties.items():
             # print(key, value)
             # writing all variables into installer.properties file
