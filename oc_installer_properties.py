@@ -46,7 +46,7 @@ installer_properties = {"MODE": os.getenv("MODE"), "NIMBUS_USERNAME": os.getenv(
 
 
 def get_oc_installer_properties():
-    with open(r"\sw\Jenkins-slave\workspace\oc_installer.properties", "a") as pfile:
+    with open(r"\sw\Jenkins\workspace\oc_installer.properties", "a") as pfile:
         for key, value in installer_properties.items():
             # print(key, value)
             # writing all variables into installer.properties file
@@ -60,14 +60,14 @@ def get_oc_installer_properties():
 def install_operator_console():
 
     ''' Getting oc installer file name '''
-    oc_installer_file_cmd = r"dir /b/s \sw\Jenkins-slave\workspace\oc*.exe"
+    oc_installer_file_cmd = r"dir /b/s \sw\Jenkins\workspace\oc*.exe"
     oc_file_cmd = subprocess.Popen(oc_installer_file_cmd, shell=True, stderr=subprocess.PIPE, universal_newlines=True, stdout=subprocess.PIPE)
     stdout, stderr = oc_file_cmd.communicate()
     print(stdout)
     oc_file_name = stdout[stdout.rfind('\\') + 1:]
     print("oc file name: ")
 
-    oc_cmd = r"\sw\Jenkins-slave\workspace\{} -i silent -f oc_installer.properties".format(oc_file_name)
+    oc_cmd = r"\sw\Jenkins\workspace\{} -i silent -f oc_installer.properties".format(oc_file_name)
     print("Executing OC installer : ",oc_cmd)
     cmd = subprocess.Popen(oc_cmd, shell=True, stderr=subprocess.PIPE, universal_newlines=True, stdout=subprocess.PIPE)
     stdout, stderr = cmd.communicate()
