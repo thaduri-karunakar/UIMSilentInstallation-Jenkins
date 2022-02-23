@@ -3,7 +3,6 @@ import os
 import subprocess
 import get_hostName_ip
 import time
-import uim_domain_details
 
 start = time.time()
 uim_robot_ip = get_hostName_ip.get_ip()
