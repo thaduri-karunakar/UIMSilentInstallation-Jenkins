@@ -99,4 +99,4 @@ for download_url in url_to_download:
 for extract_zip in installer_filename:
         unzip_installer(extract_zip)
 move_installers()
-print('UIM installer has took', (time.time() - start) / 60, 'Minutes..')
+print('UIM installer download has took', (time.time() - start) / 60, 'Minutes..')

@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 import os
 import subprocess
+import sys
+
 import get_hostName_ip
 import time
 
@@ -56,14 +58,24 @@ def get_oc_installer_properties():
 
 
 def install_operator_console():
-    oc_cmd = r"\sw\Jenkins-slave\workspace\oc-installer*.exe -i silent -f oc_installer.properties"
+
+    ''' Getting oc installer file name '''
+    oc_installer_file_cmd = r"dir /b/s oc*.exe"
+    oc_file_cmd = subprocess.Popen(oc_installer_file_cmd, shell=True, stderr=subprocess.PIPE, universal_newlines=True, stdout=subprocess.PIPE)
+    stdout, stderr = oc_file_cmd.communicate()
+    print(stdout)
+    oc_file_name = stdout[stdout.rfind('\\') + 1:]
+
+    oc_cmd = r"\sw\Jenkins-slave\workspace\{} -i silent -f oc_installer.properties".format(oc_file_name)
+    print("Executing OC installer : ",oc_cmd)
     cmd = subprocess.Popen(oc_cmd, shell=True, stderr=subprocess.PIPE, universal_newlines=True, stdout=subprocess.PIPE)
     stdout, stderr = cmd.communicate()
     exit_code = cmd.wait()
     if exit_code == 0:
-        print("operator console went Successfully : \n", stdout)
+        print("operator console installation went Successfully : \n", stdout)
     else:
-        print("operator console failed with below error : \n", stderr)
+        print("operator console installation failed with below error : \n", stderr)
+        sys.exit(1)
 
 
 get_oc_installer_properties()
