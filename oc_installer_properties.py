@@ -60,11 +60,12 @@ def get_oc_installer_properties():
 def install_operator_console():
 
     ''' Getting oc installer file name '''
-    oc_installer_file_cmd = r"dir /b/s oc*.exe"
+    oc_installer_file_cmd = r"dir /b/s \sw\Jenkins-slave\workspace\oc*.exe"
     oc_file_cmd = subprocess.Popen(oc_installer_file_cmd, shell=True, stderr=subprocess.PIPE, universal_newlines=True, stdout=subprocess.PIPE)
     stdout, stderr = oc_file_cmd.communicate()
     print(stdout)
     oc_file_name = stdout[stdout.rfind('\\') + 1:]
+    print("oc file name: ")
 
     oc_cmd = r"\sw\Jenkins-slave\workspace\{} -i silent -f oc_installer.properties".format(oc_file_name)
     print("Executing OC installer : ",oc_cmd)
