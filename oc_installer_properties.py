@@ -56,7 +56,7 @@ def get_oc_installer_properties():
 
 
 def install_operator_console():
-    oc_cmd = r"\sw\Jenkins-slave\workspace\oc-installer-20.4.0-windows_x64.exe -i silent -f oc_installer.properties"
+    oc_cmd = r"\sw\Jenkins-slave\workspace\oc-installer*.exe -i silent -f oc_installer.properties"
     cmd = subprocess.Popen(oc_cmd, shell=True, stderr=subprocess.PIPE, universal_newlines=True, stdout=subprocess.PIPE)
     stdout, stderr = cmd.communicate()
     exit_code = cmd.wait()
