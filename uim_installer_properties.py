@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import datetime
 import os
 import subprocess
 import sys
@@ -9,6 +10,11 @@ import time
 start = time.time()
 uim_installation_type = os.getenv("uim_installation_type").strip().lower()
 # print("uim_installation_type is : ", uim_installation_type)
+
+''' Start of reading date time to append with db name, reading last 3 digits of ms '''
+date = str(datetime.datetime.now())
+time_ms = date[date.rfind(".")+4:]
+''' End of reading date time to append with db name, reading last 3 digits of ms '''
 
 uim_host_ip = get_hostName_ip.get_ip()
 uim_hostname = get_hostName_ip.get_hostname()
@@ -90,7 +96,10 @@ def get_uim_fresh_installer_properties():
                 oracle_user_input = os.getenv("{}".format(oracle_variable)).strip()
                 print(oracle_user_input)
                 uim_fresh_installer_properties[oracle_variable] = oracle_user_input
-    print("Below are the uim_upgrade_installer_properties variables")
+    print("Below are the uim_fresh_installer_properties variables")
+    db_name = uim_fresh_installer_properties["DB_NAME"]+time_ms    #appending MS after db_name
+    uim_fresh_installer_properties["DB_NAME"] = db_name
+
     print(uim_fresh_installer_properties)
     # print(uim_fresh_installer_properties['USER_INSTALL_DIR'])
     time.sleep(2)

@@ -9,7 +9,7 @@ base_url = r"https://cloudportal.broadcom.net/api/vms"
 host_ids = {}
 
 # X-Auth-Token for uim.st : f179aa26b2d3499b005a31d0565bd0a9 and karunakar token : c61a2d67b5f50e7f412299e0c3172050
-XAuthToken = "f179aa26b2d3499b005a31d0565bd0a9"
+XAuthToken = os.getenv("XAuthToken")
 def test_get_vms():
     header = {"X-Auth-Token": XAuthToken}
     payload = \
